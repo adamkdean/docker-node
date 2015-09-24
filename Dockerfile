@@ -1,14 +1,16 @@
 FROM adamkdean/baseimage
 MAINTAINER Adam K Dean <adamkdean@googlemail.com>
 
-# Install Node.js
-RUN add-apt-repository ppa:chris-lea/node.js;\
-    apt-get update;\
-    apt-get install -y nodejs;\
-    ln -sf /usr/bin/nodejs /usr/bin/node
+# Add Git and Node package sources
+RUN add-apt-repository -y ppa:git-core/ppa; \
+    curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+# Install packages
+RUN apt-get install -yq \
+    nodejs
 
 # Select specific version of Node.js via n
-RUN npm install -g n && \
-    n 0.12
+RUN npm install -g n; \
+    n 0.12;
 
 CMD ["bash"]
