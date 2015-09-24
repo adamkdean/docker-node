@@ -7,6 +7,7 @@ RUN add-apt-repository -y ppa:git-core/ppa; \
 
 # Install packages
 RUN apt-get install -yq \
+    git \
     nodejs
 
 # Select specific version of Node.js via n
